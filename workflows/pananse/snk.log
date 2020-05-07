@@ -1,0 +1,760 @@
+Checking if samples are single-end or paired-end...
+Done!
+
+
+CONFIGURATION VARIABLES:
+samples                : samples.tsv
+fastq_dir              : /home/qxu/projects/xnetwork/p300/fastq
+result_dir             : /home/qxu/projects/xnetwork/p300/results
+genome_dir             : /scratch/qxu/genome
+email                  : qxuchn@gmail.com
+peak_caller            : {'macs2': '--keep-dup 1 --buffer-size 10000'}
+biological_replicates  : fisher
+technical_replicates   : merge
+remove_blacklist       : True
+min_mapping_quality    : 30
+aligner                : bwa
+rule_dir               : /scratch/qxu/projects/xnetwork/p300/snakemake-workflows2/rules
+log_dir                : /home/qxu/projects/xnetwork/p300/results/log
+benchmark_dir          : /home/qxu/projects/xnetwork/p300/results/benchmark
+fqext1                 : R1
+fqext2                 : R2
+fqsuffix               : fastq
+cpulimit               : True
+sra_dir                : /home/qxu/projects/xnetwork/p300/results/sra
+split                  : --split-files --skip-technical --dumpbase --readids --clip --read-filter pass --defline-seq '@$ac.$si.$sg/$ri' --defline-qual '+'
+splot                  : --split-spot  --skip-technical --dumpbase --readids --clip --read-filter pass --defline-seq '@$ac.$si.$sg/$ri' --defline-qual '+'
+fqext                  : ['R1', 'R2']
+macs2_types            : ['control_lambda.bdg', 'peaks.xls', 'treat_pileup.bdg', 'summits.bed', 'peaks.narrowPeak']
+macs_cmbreps           : 
+layout                 : {'RF_5-0_R1': 'SINGLE', 'RF_5-5_R1': 'SINGLE', 'RF_6-5_R1': 'SINGLE', 'RF_7-0_R1': 'SINGLE', 'RF_7-5_R1': 'SINGLE', 'RF_8-0_R1': 'SINGLE', 'RF_8-5_R1': 'SINGLE', 'RF_9-0_R1': 'SINGLE', 'RF_9-5_R1': 'SINGLE', 'RF_10-0_R1': 'SINGLE', 'RF_10-5_R1': 'SINGLE', 'RF_11-0_R1': 'SINGLE', 'RF_11-5_R1': 'SINGLE', 'RF_12-0_R1': 'SINGLE', 'RF_12-5_R1': 'SINGLE', 'RF_13-0_R1': 'SINGLE', 'RF_13-5_R1': 'SINGLE', 'RF_14-0_R1': 'SINGLE', 'RF_14-5_R1': 'SINGLE', 'RF_15-0_R1': 'SINGLE', 'RF_15-5_R1': 'SINGLE', 'RF_16-0_R1': 'SINGLE', 'RF_16-5_R1': 'SINGLE', 'RF_17-0_R1': 'SINGLE', 'RF_17-5_R1': 'SINGLE', 'Input_17-0_R1': 'SINGLE', 'Input_11-0_R1': 'SINGLE', 'Input_9-0_R1': 'SINGLE', 'Input_5-0_R1': 'SINGLE', 'Input_15-0_R1': 'SINGLE', 'Input_7-0_R1': 'SINGLE', 'Input_13-0_R1': 'SINGLE'}
+
+
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 30
+Rules claiming more threads will be scaled down.
+Provided resources: parallel_downloads=3, deeptools_limit=16, R_scripts=1, mem_gb=503
+Job counts:
+	count	jobs
+	25	bdg2wig
+	25	make_enhancer
+	1	run_all
+	5	sort_bdg
+	56
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_5-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_5-0_R1.wig
+    jobid: 27
+    wildcards: assembly=xt10.0, sample=RF_5-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule sort_bdg:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_11-0_R1_treat_pileup.bdg
+    output: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_11-0_R1_sort.bdg
+    jobid: 62
+    wildcards: assembly=xt10.0, sample=RF_11-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_16-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_16-0_R1.wig
+    jobid: 28
+    wildcards: assembly=xt10.0, sample=RF_16-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_13-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_13-0_R1.wig
+    jobid: 30
+    wildcards: assembly=xt10.0, sample=RF_13-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_14-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_14-5_R1.wig
+    jobid: 33
+    wildcards: assembly=xt10.0, sample=RF_14-5_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_8-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_8-0_R1.wig
+    jobid: 34
+    wildcards: assembly=xt10.0, sample=RF_8-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_5-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_5-5_R1.wig
+    jobid: 31
+    wildcards: assembly=xt10.0, sample=RF_5-5_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_17-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_17-0_R1.wig
+    jobid: 35
+    wildcards: assembly=xt10.0, sample=RF_17-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule sort_bdg:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_9-0_R1_treat_pileup.bdg
+    output: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_9-0_R1_sort.bdg
+    jobid: 54
+    wildcards: assembly=xt10.0, sample=RF_9-0_R1
+
+
+[Mon May  4 17:28:15 2020]
+rule sort_bdg:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_10-5_R1_treat_pileup.bdg
+    output: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_10-5_R1_sort.bdg
+    jobid: 51
+    wildcards: assembly=xt10.0, sample=RF_10-5_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_7-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_7-0_R1.wig
+    jobid: 36
+    wildcards: assembly=xt10.0, sample=RF_7-0_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_16-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_16-5_R1.wig
+    jobid: 40
+    wildcards: assembly=xt10.0, sample=RF_16-5_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_15-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_15-0_R1.wig
+    jobid: 38
+    wildcards: assembly=xt10.0, sample=RF_15-0_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_15-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_15-5_R1.wig
+    jobid: 39
+    wildcards: assembly=xt10.0, sample=RF_15-5_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule sort_bdg:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_12-0_R1_treat_pileup.bdg
+    output: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_12-0_R1_sort.bdg
+    jobid: 57
+    wildcards: assembly=xt10.0, sample=RF_12-0_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_10-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_10-0_R1.wig
+    jobid: 41
+    wildcards: assembly=xt10.0, sample=RF_10-0_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_14-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_14-0_R1.wig
+    jobid: 42
+    wildcards: assembly=xt10.0, sample=RF_14-0_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_17-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_17-5_R1.wig
+    jobid: 45
+    wildcards: assembly=xt10.0, sample=RF_17-5_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_13-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_13-5_R1.wig
+    jobid: 44
+    wildcards: assembly=xt10.0, sample=RF_13-5_R1
+
+
+[Mon May  4 17:28:16 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_8-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_8-5_R1.wig
+    jobid: 46
+    wildcards: assembly=xt10.0, sample=RF_8-5_R1
+
+
+[Mon May  4 17:28:17 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_9-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_9-5_R1.wig
+    jobid: 47
+    wildcards: assembly=xt10.0, sample=RF_9-5_R1
+
+
+[Mon May  4 17:28:17 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_12-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_12-5_R1.wig
+    jobid: 48
+    wildcards: assembly=xt10.0, sample=RF_12-5_R1
+
+
+[Mon May  4 17:28:17 2020]
+rule sort_bdg:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_11-5_R1_treat_pileup.bdg
+    output: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_11-5_R1_sort.bdg
+    jobid: 68
+    wildcards: assembly=xt10.0, sample=RF_11-5_R1
+
+
+[Mon May  4 17:28:17 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_7-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_7-5_R1.wig
+    jobid: 49
+    wildcards: assembly=xt10.0, sample=RF_7-5_R1
+
+
+[Mon May  4 17:28:17 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_6-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_6-5_R1.wig
+    jobid: 50
+    wildcards: assembly=xt10.0, sample=RF_6-5_R1
+
+[Mon May  4 17:28:32 2020]
+Finished job 45.
+1 of 56 steps (2%) done
+
+[Mon May  4 17:28:32 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_17-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_17-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_17-5_R1.bed
+    jobid: 20
+    wildcards: assembly=xt10.0, sample=RF_17-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:28:33 2020]
+Finished job 40.
+2 of 56 steps (4%) done
+
+[Mon May  4 17:28:33 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_16-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_16-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_16-5_R1.bed
+    jobid: 15
+    wildcards: assembly=xt10.0, sample=RF_16-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:28:34 2020]
+Finished job 20.
+3 of 56 steps (5%) done
+[Mon May  4 17:28:38 2020]
+Finished job 15.
+4 of 56 steps (7%) done
+[Mon May  4 17:28:43 2020]
+Finished job 51.
+5 of 56 steps (9%) done
+
+[Mon May  4 17:28:43 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_10-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_10-5_R1.wig
+    jobid: 26
+    wildcards: assembly=xt10.0, sample=RF_10-5_R1
+
+[Mon May  4 17:28:45 2020]
+Finished job 35.
+6 of 56 steps (11%) done
+
+[Mon May  4 17:28:45 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_17-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_17-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_17-0_R1.bed
+    jobid: 10
+    wildcards: assembly=xt10.0, sample=RF_17-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:28:48 2020]
+Finished job 28.
+7 of 56 steps (12%) done
+
+[Mon May  4 17:28:48 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_16-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_16-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_16-0_R1.bed
+    jobid: 3
+    wildcards: assembly=xt10.0, sample=RF_16-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:28:49 2020]
+Finished job 44.
+8 of 56 steps (14%) done
+
+[Mon May  4 17:28:49 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_13-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_13-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_13-5_R1.bed
+    jobid: 19
+    wildcards: assembly=xt10.0, sample=RF_13-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:28:51 2020]
+Finished job 46.
+9 of 56 steps (16%) done
+
+[Mon May  4 17:28:51 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_8-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_8-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_8-5_R1.bed
+    jobid: 21
+    wildcards: assembly=xt10.0, sample=RF_8-5_R1
+
+[Mon May  4 17:28:52 2020]
+Finished job 68.
+10 of 56 steps (18%) done
+
+[Mon May  4 17:28:52 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_11-5_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_11-5_R1.wig
+    jobid: 43
+    wildcards: assembly=xt10.0, sample=RF_11-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:02 2020]
+Finished job 47.
+11 of 56 steps (20%) done
+
+[Mon May  4 17:29:02 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_9-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_9-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_9-5_R1.bed
+    jobid: 22
+    wildcards: assembly=xt10.0, sample=RF_9-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:06 2020]
+Finished job 49.
+12 of 56 steps (21%) done
+
+[Mon May  4 17:29:06 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_7-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_7-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_7-5_R1.bed
+    jobid: 24
+    wildcards: assembly=xt10.0, sample=RF_7-5_R1
+
+[Mon May  4 17:29:07 2020]
+Finished job 31.
+13 of 56 steps (23%) done
+
+[Mon May  4 17:29:07 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_5-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_5-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_5-5_R1.bed
+    jobid: 6
+    wildcards: assembly=xt10.0, sample=RF_5-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:13 2020]
+Finished job 10.
+14 of 56 steps (25%) done
+[Mon May  4 17:29:13 2020]
+Finished job 21.
+15 of 56 steps (27%) done
+[Mon May  4 17:29:14 2020]
+Finished job 48.
+16 of 56 steps (29%) done
+
+[Mon May  4 17:29:14 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_12-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_12-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_12-5_R1.bed
+    jobid: 23
+    wildcards: assembly=xt10.0, sample=RF_12-5_R1
+
+[Mon May  4 17:29:15 2020]
+Finished job 26.
+17 of 56 steps (30%) done
+
+[Mon May  4 17:29:15 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_10-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_10-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_10-5_R1.bed
+    jobid: 1
+    wildcards: assembly=xt10.0, sample=RF_10-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:15 2020]
+Finished job 50.
+18 of 56 steps (32%) done
+
+[Mon May  4 17:29:15 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_6-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_6-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_6-5_R1.bed
+    jobid: 25
+    wildcards: assembly=xt10.0, sample=RF_6-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:17 2020]
+Finished job 24.
+19 of 56 steps (34%) done
+[Mon May  4 17:29:19 2020]
+Finished job 62.
+20 of 56 steps (36%) done
+
+[Mon May  4 17:29:19 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_11-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_11-0_R1.wig
+    jobid: 37
+    wildcards: assembly=xt10.0, sample=RF_11-0_R1
+
+[Mon May  4 17:29:20 2020]
+Finished job 25.
+21 of 56 steps (38%) done
+[Mon May  4 17:29:21 2020]
+Finished job 39.
+22 of 56 steps (39%) done
+
+[Mon May  4 17:29:21 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_15-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_15-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_15-5_R1.bed
+    jobid: 14
+    wildcards: assembly=xt10.0, sample=RF_15-5_R1
+
+[Mon May  4 17:29:21 2020]
+Finished job 6.
+23 of 56 steps (41%) done
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:29 2020]
+Finished job 3.
+24 of 56 steps (43%) done
+[Mon May  4 17:29:30 2020]
+Finished job 30.
+25 of 56 steps (45%) done
+
+[Mon May  4 17:29:30 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_13-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_13-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_13-0_R1.bed
+    jobid: 5
+    wildcards: assembly=xt10.0, sample=RF_13-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:32 2020]
+Finished job 43.
+26 of 56 steps (46%) done
+
+[Mon May  4 17:29:32 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_11-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_11-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_11-5_R1.bed
+    jobid: 18
+    wildcards: assembly=xt10.0, sample=RF_11-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:35 2020]
+Finished job 34.
+27 of 56 steps (48%) done
+
+[Mon May  4 17:29:35 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_8-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_8-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_8-0_R1.bed
+    jobid: 9
+    wildcards: assembly=xt10.0, sample=RF_8-0_R1
+
+[Mon May  4 17:29:36 2020]
+Finished job 33.
+28 of 56 steps (50%) done
+
+[Mon May  4 17:29:36 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_14-5_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_14-5_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_14-5_R1.bed
+    jobid: 8
+    wildcards: assembly=xt10.0, sample=RF_14-5_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:40 2020]
+Finished job 41.
+29 of 56 steps (52%) done
+
+[Mon May  4 17:29:40 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_10-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_10-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_10-0_R1.bed
+    jobid: 16
+    wildcards: assembly=xt10.0, sample=RF_10-0_R1
+
+[Mon May  4 17:29:40 2020]
+Finished job 19.
+30 of 56 steps (54%) done
+[Mon May  4 17:29:40 2020]
+Finished job 54.
+31 of 56 steps (55%) done
+
+[Mon May  4 17:29:40 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_9-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_9-0_R1.wig
+    jobid: 29
+    wildcards: assembly=xt10.0, sample=RF_9-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:42 2020]
+Finished job 27.
+32 of 56 steps (57%) done
+
+[Mon May  4 17:29:42 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_5-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_5-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_5-0_R1.bed
+    jobid: 2
+    wildcards: assembly=xt10.0, sample=RF_5-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:29:49 2020]
+Finished job 57.
+33 of 56 steps (59%) done
+
+[Mon May  4 17:29:49 2020]
+rule bdg2wig:
+    input: /home/qxu/projects/xnetwork/p300/results/sort_bdg/xt10.0-RF_12-0_R1_sort.bdg, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_12-0_R1.wig
+    jobid: 32
+    wildcards: assembly=xt10.0, sample=RF_12-0_R1
+
+[Mon May  4 17:30:00 2020]
+Finished job 36.
+34 of 56 steps (61%) done
+
+[Mon May  4 17:30:00 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_7-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_7-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_7-0_R1.bed
+    jobid: 11
+    wildcards: assembly=xt10.0, sample=RF_7-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:30:06 2020]
+Finished job 22.
+35 of 56 steps (62%) done
+[Mon May  4 17:30:16 2020]
+Finished job 38.
+36 of 56 steps (64%) done
+
+[Mon May  4 17:30:16 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_15-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_15-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_15-0_R1.bed
+    jobid: 13
+    wildcards: assembly=xt10.0, sample=RF_15-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:30:18 2020]
+Finished job 42.
+37 of 56 steps (66%) done
+
+[Mon May  4 17:30:18 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_14-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_14-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_14-0_R1.bed
+    jobid: 17
+    wildcards: assembly=xt10.0, sample=RF_14-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:30:22 2020]
+Finished job 9.
+38 of 56 steps (68%) done
+[Mon May  4 17:30:29 2020]
+Finished job 37.
+39 of 56 steps (70%) done
+
+[Mon May  4 17:30:29 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_11-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_11-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_11-0_R1.bed
+    jobid: 12
+    wildcards: assembly=xt10.0, sample=RF_11-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:30:43 2020]
+Finished job 11.
+40 of 56 steps (71%) done
+[Mon May  4 17:30:52 2020]
+Finished job 1.
+41 of 56 steps (73%) done
+[Mon May  4 17:31:03 2020]
+Finished job 2.
+42 of 56 steps (75%) done
+[Mon May  4 17:31:09 2020]
+Finished job 18.
+43 of 56 steps (77%) done
+[Mon May  4 17:31:13 2020]
+Finished job 29.
+44 of 56 steps (79%) done
+
+[Mon May  4 17:31:13 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_9-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_9-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_9-0_R1.bed
+    jobid: 4
+    wildcards: assembly=xt10.0, sample=RF_9-0_R1
+
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:31:28 2020]
+Finished job 32.
+45 of 56 steps (80%) done
+
+[Mon May  4 17:31:28 2020]
+rule make_enhancer:
+    input: /home/qxu/projects/xnetwork/p300/results/macs2/xt10.0-RF_12-0_R1_peaks.narrowPeak, /home/qxu/projects/xnetwork/p300/results/macs2_wig/xt10.0-RF_12-0_R1.wig, /scratch/qxu/genome/xt10.0/xt10.0.fa.sizes
+    output: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_12-0_R1.bed
+    jobid: 7
+    wildcards: assembly=xt10.0, sample=RF_12-0_R1
+
+[Mon May  4 17:31:29 2020]
+Finished job 14.
+46 of 56 steps (82%) done
+[33mJob counts:
+	count	jobs
+	1	make_enhancer
+	1[0m
+[Mon May  4 17:31:40 2020]
+Finished job 23.
+47 of 56 steps (84%) done
+[Mon May  4 17:32:11 2020]
+Finished job 5.
+48 of 56 steps (86%) done
+[Mon May  4 17:32:35 2020]
+Finished job 16.
+49 of 56 steps (88%) done
+[Mon May  4 17:32:43 2020]
+Finished job 8.
+50 of 56 steps (89%) done
+[Mon May  4 17:33:09 2020]
+Finished job 12.
+51 of 56 steps (91%) done
+[Mon May  4 17:33:23 2020]
+Finished job 4.
+52 of 56 steps (93%) done
+[Mon May  4 17:34:24 2020]
+Finished job 13.
+53 of 56 steps (95%) done
+[Mon May  4 17:34:36 2020]
+Finished job 17.
+54 of 56 steps (96%) done
+[Mon May  4 17:35:16 2020]
+Finished job 7.
+55 of 56 steps (98%) done
+
+[Mon May  4 17:35:16 2020]
+localrule run_all:
+    input: /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_10-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_5-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_16-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_9-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_13-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_5-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_12-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_14-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_8-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_17-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_7-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_11-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_15-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_15-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_16-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_10-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_14-0_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_11-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_13-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_17-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_8-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_9-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_12-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_7-5_R1.bed, /home/qxu/projects/xnetwork/p300/results/enhancer/xt10.0-RF_6-5_R1.bed
+    jobid: 0
+
+[Mon May  4 17:35:16 2020]
+Finished job 0.
+56 of 56 steps (100%) done
+Complete log: /scratch/qxu/projects/xnetwork/p300/snakemake-workflows2/workflows/pananse/.snakemake/log/2020-05-04T172813.849817.snakemake.log
