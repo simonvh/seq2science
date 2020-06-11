@@ -1,0 +1,20 @@
+# do onstart/onexit things
+sample_schemas = ['sample', 'assembly', 'replicate', 'condition', 'strandedness']
+config_schemas = ['general', 'download', 'alignment_general', 'peakcalling', 'trackhub']
+include: "../../rules/configuration_generic.smk"
+include: "../../rules/configuration_workflows.smk"
+
+
+# load the relevant rules
+include: f"{config['rule_dir']}/bigfiles.smk"
+include: f"{config['rule_dir']}/pananse.smk"
+
+
+rule run_all:
+    """
+    TODO: explanation
+    """
+    input:
+        expand(["{result_dir}/enhancer/{assemblies}-{sample}.bed"],
+                **{**config, 
+                    **{'assemblies': set(samples['assembly']), 'sample': set(samples.index)}})
